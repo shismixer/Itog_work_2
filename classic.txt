@@ -1,0 +1,38 @@
+public class treug
+{
+    int[] cords = new int[6];
+    int searhzn = 100;
+    
+    int check(int[] points)
+    {
+        int Inn=0;
+        int Out=0;
+        for (int p=0; p<points.Length;p+=2)
+        {   
+            if (cords.Contains(points[p]) && cords.Contains(points[p+1]) ) continue;
+            else
+            {
+                
+                int ax;
+                int ay;
+                int bx;
+                int by;
+                int[] ch= new int[3];
+                for (int i=0; i < 6; i += 2)
+                {
+                    ax = points[p] - cords[i];
+                    ay = points[p + 1] - cords[i+1];
+
+                    bx = cords[i+2] -cords[i];
+                    by = cords[i+3] -cords[i+1];
+                    ch[i/2] =ax*by - ay*bx;
+                }
+                if (((ch[0] > 0) && (ch[1] > 0) && (ch[2] > 0)) || ((ch[0] < 0) && (ch[1] < 0) && (ch[2] < 0))) Inn++;
+                else Out++;
+
+
+            }
+        }
+        searhzn = Out - Inn;
+    }
+}
